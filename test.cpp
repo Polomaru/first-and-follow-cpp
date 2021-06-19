@@ -8,52 +8,47 @@ using namespace std;
 class Regla; class Token; class Gramatica;
 
 class Token {
-    public:
-
-    Token(string s){
-      simbolo = s;
-    }
-
-    string simbolo = "";
-
-    vector<Regla*> reglas = {};
-
-    bool is_terminal(){
-        return reglas.empty();
-    }
-
+  public:
+  Token(string s){
+    simbolo = s;
+  }
+  string simbolo = "";
+  vector<Regla*> reglas = {};
+  bool is_terminal(){
+    return reglas.empty();
+  }
 };
 
 class Regla {
-    public:
-    vector<Token*> tokens = {};
-
+  public:
+  vector<Token*> tokens = {};
 };
 
 class Gramatica {
-    public:
-    vector<Token*> noTerminales = {};
-
+  public:
+  vector<Token*> noTerminales = {};
 };
 
 
-vector<Token> Primeros(Token x){
-    vector<Token> primeros = {};
+vector<Token*> Primeros(Token x){
+    vector<Token*> primeros = {};
     string same = x.simbolo;
     if(x.is_terminal()){
-        primeros.push_back(x);
-        return primeros;
+      primeros.push_back(&x);
+      return primeros;
     }
+    
     for(int i = 0; i< x.reglas.size(); i++){
         if(x.reglas[i]->tokens[0]->simbolo != same){
-            if(x.reglas[i]->tokens[0]->is_terminal() == true){
-                primeros.push_back(*x.reglas[i]->tokens[0]);
+            if(x.reglas[i]->tokens[0]->is_terminal()){
+              primeros.push_back(x.reglas[i]->tokens[0]);
             } else{
-                vector<Token> otrosPrimeros = Primeros(*x.reglas[i]->tokens[0]);
-                primeros.insert(primeros.end(), otrosPrimeros.begin(), otrosPrimeros.end());
+              vector<Token*> otrosPrimeros = Primeros(*(x.reglas[i]->tokens[0]));
+              primeros.insert(primeros.end(), otrosPrimeros.begin(), otrosPrimeros.end());
             }
         }
     }
+    return primeros;
 }
 
 vector<Token> Siguientes(Gramatica x){
@@ -89,7 +84,7 @@ int main() {
 
   Regla r_factor1; r_factor1.tokens.push_back(&PA);r_factor1.tokens.push_back(&exp);r_factor1.tokens.push_back(&PC);
 
-  Regla r_factor2;r_term2.tokens.push_back(&numero);
+  Regla r_factor2;r_factor2.tokens.push_back(&numero);
 
   exp.reglas.push_back(&r_exp1);exp.reglas.push_back(&r_exp2);
   opsuma.reglas.push_back(&r_opsuma1);opsuma.reglas.push_back(&r_opsuma2);
@@ -97,5 +92,16 @@ int main() {
   opmult.reglas.push_back(&r_opmult);
   factor.reglas.push_back(&r_factor1);factor.reglas.push_back(&r_factor2);
 
-  cout<<Primeros(opsuma)[0].simbolo;
+  Gramatica g;
+  g.noTerminales.push_back(&exp);
+  g.noTerminales.push_back(&opsuma);
+  g.noTerminales.push_back(&term);
+  g.noTerminales.push_back(&opmult);
+  g.noTerminales.push_back(&factor);
+
+  vector<Token*> primeros = Primeros(exp);
+  for(int i = 0; i<primeros.size(); i++){
+    cout<<primeros[i]->simbolo<<" ";
+  }
+  
 }
