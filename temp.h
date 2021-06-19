@@ -6,9 +6,13 @@ class Regla; class Token; class Gramatica;
 class Token {
     public:
 
+    Token(string s){
+      simbolo = s;
+    }
+
     string simbolo = "";
 
-    vector<Regla> reglas = {};
+    vector<Regla*> reglas = {};
 
     bool is_terminal(){
         return reglas.empty();
@@ -18,13 +22,13 @@ class Token {
 
 class Regla {
     public:
-    vector<Token> tokens = {};
+    vector<Token*> tokens = {};
 
 };
 
 class Gramatica {
     public:
-    vector<Token> noTerminales = {};
+    vector<Token*> noTerminales = {};
 
 };
 
@@ -37,11 +41,11 @@ vector<Token> Primeros(Token x){
         return primeros;
     }
     for(int i = 0; i< x.reglas.size(); i++){
-        if(x.reglas[i].tokens[0].simbolo != same){
-            if(x.reglas[i].tokens[0].is_terminal() == true){
-                primeros.push_back(x.reglas[i].tokens[0]);
+        if(x.reglas[i]->tokens[0]->simbolo != same){
+            if(x.reglas[i]->tokens[0]->is_terminal() == true){
+                primeros.push_back(*x.reglas[i]->tokens[0]);
             } else{
-                vector<Token> otrosPrimeros = Primeros(x.reglas[i].tokens[0]);
+                vector<Token> otrosPrimeros = Primeros(*x.reglas[i]->tokens[0]);
                 primeros.insert(primeros.end(), otrosPrimeros.begin(), otrosPrimeros.end());
             }
         }
@@ -51,4 +55,3 @@ vector<Token> Primeros(Token x){
 vector<Token> Siguientes(Gramatica x){
     
 }
-
