@@ -1,39 +1,29 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <cmath>
+#include "lib.h"
 
 using namespace std;
 
 class Regla; class Token; class Gramatica;
 
 class Token {
-    public:
-
-    Token(string s){
-      simbolo = s;
-    }
-
-    string simbolo = "";
-
-    vector<Regla*> reglas = {};
-
-    bool is_terminal(){
-        return reglas.empty();
-    }
-
+  public:
+  Token(string s){
+    simbolo = s;
+  }
+  string simbolo = "";
+  vector<Regla*> reglas = {};
+  bool is_terminal(){
+    return reglas.empty();
+  }
 };
 
 class Regla {
-    public:
-    vector<Token*> tokens = {};
-
+  public:
+  vector<Token*> tokens = {};
 };
 
 class Gramatica {
-    public:
-    vector<Token*> noTerminales = {};
-
+  public:
+  vector<Token*> noTerminales = {};
 };
 
 
@@ -110,5 +100,5 @@ int main() {
   for(int i = 0; i<primeros.size(); i++){
     cout<<primeros[i]->simbolo<<" ";
   }
-
+  
 }
