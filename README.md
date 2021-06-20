@@ -32,6 +32,16 @@ We need flex.
 Para hacer uso de los primeros y siguientes, primero debe de tener una grámatica.
 Esta grámatica tiene que estar bien separada, mediante espacios podemos separar las sentencias (` `) y las reglas mediante ` | ` , además que para poder separar un conjunto de reglas usamos ` -> `; de tal manera que puede quedar como alguno de los ejemplos que esta en la carpeta `grammars`
 
+Por ejemplo:
+```sh
+  S -> A B C D E
+  A -> a | _e
+  B -> b | _e
+  C -> c
+  D -> d | _e
+  E -> e | _e
+```
+
 De momento, ahora solo corriendo. En la carpeta `sin`.
 
 ```sh
