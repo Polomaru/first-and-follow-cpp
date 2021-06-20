@@ -2,7 +2,7 @@
 
 int main()
 {
-    Reader reader("2");
+    Grammar reader("1");
 
     // cout<<reader.NT;
     // cout<<reader.T<<endl;
@@ -17,10 +17,12 @@ int main()
     {
       cout<< i << " : " <<f[i];
     }
+
     cout<<endl;
     cout<<"second: ";
-     cout<<endl;
+    cout<<endl;
     auto fo = reader.follow(f);
+
     for(const auto &  i : reader.NT)
     {
       cout<< i << " : " <<fo[i];

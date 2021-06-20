@@ -2,6 +2,6 @@ exp -> term exp'
 exp' -> opsuma term exp' | _e
 opsuma -> + | -
 term -> factor term'
-term' -> opmult factor term | _e
+term' -> opmult factor term' | _e
 opmult -> *
 factor -> ( exp ) | numero

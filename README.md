@@ -32,6 +32,7 @@ We need flex.
 Para hacer uso de los primeros y siguientes, primero debe de tener una grámatica.
 Esta grámatica tiene que estar bien separada, mediante espacios podemos separar las sentencias (` `) y las reglas mediante ` | ` , además que para poder separar un conjunto de reglas usamos ` -> `; de tal manera que puede quedar como alguno de los ejemplos que esta en la carpeta `grammars`
 
+
 Por ejemplo:
 ```sh
   S -> A B C D E
@@ -42,6 +43,9 @@ Por ejemplo:
   E -> e | _e
 ```
 
+Cabe aclarar que la palabra `_e` hace alución a `epsilon` y es una palabra reservada.
+
+
 De momento, ahora solo corriendo. En la carpeta `sin`.
 
 ```sh
@@ -49,13 +53,25 @@ De momento, ahora solo corriendo. En la carpeta `sin`.
   ./a.out	
 ```
 
-Si necesita cambiar la grámtica, abre el archivo Gtest.cpp, y cambia por el otro nombre del archivo que está en la carpeta `grammars`.
+Si necesita cambiar la grámatica, abre el archivo Gtest.cpp, y cambia por el otro nombre del archivo que está en la carpeta `grammars`.
 Por ejemplo:
 
 ```c++
-  Reader reader("3"); //referenciandose al archivo 3.txt en la carpeta grammars.
+  Grammar reader("3"); //referenciandose al archivo 3.txt en la carpeta grammars.
 ```
 
+## Funciones
+
+De momento tenemos 2 funciones que están en la clase `Grammar`.
+
+```c++
+  unordered_map<string,vector<string>> first(); 
+  // que te devuelve un unordered_map de los no terminales y sus primeros
+```
+```c++
+  unordered_map<string,vector<string>> follow(unordered_map<string,vector<string>> first) 
+  // que te devuelve un unordered_map de los no terminales y sus segundos, usando parte de los primeros.
+```
 # osuna
 Compilar:
 	flex fb.l

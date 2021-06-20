@@ -1,3 +1,6 @@
-S -> B b | C d
-B -> a B | _e
-C -> c C | _e
+S -> B b
+S -> C d
+B -> a B
+B -> _e
+C -> c C
+C -> _e
