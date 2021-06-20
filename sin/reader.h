@@ -149,25 +149,93 @@ class Reader
         follows[NT[0]].push_back("$");
         
         bool change = false;
-
         do
         {
             change = false;
             for(const auto & i : NT)
             {
-                for(const auto & rule : allrules)
+                for(const auto & h : NT)
                 {
-                    for ( const auto & token : rule )
+                    for(const auto & rule : rules[h])
                     {
-                        if(token == i) 
+                        for ( int cont = 0; cont < rule.size() ; cont++ )
                         {
-                            //mimir
+                            if(rule[cont] == i) 
+                            {
+                                
+                                if(cont == rule.size()-1)
+                                {
+                                    for(const auto & j : follows[h])
+                                    {
+                                        if(!(contains(follows[i], j)))
+                                        {
+                                            follows[i].push_back(j);
+                                            change = true;
+                                        }
+                                    }
+                                }
+                                else 
+                                {
+                                    if(u_mtemp[rule[cont + 1]] == "T")
+                                    {
+                                        if(!(contains(follows[i], rule[cont + 1])))
+                                        {
+                                            follows[i].push_back(rule[cont + 1]);
+                                            change = true;
+                                        }
+                                    }
+                                    else if (u_mtemp[rule[cont + 1]] == "NT")
+                                    {
+                                        int cont1 = cont + 1; 
+                                        while(cont1 <= rule.size())
+                                        {
+                                            if(cont1 == rule.size())
+                                            {
+                                                for(const auto & j : follows[h])
+                                                {
+                                                    if(!(contains(follows[i], j)))
+                                                    {
+                                                        follows[i].push_back(j);
+                                                        change = true;
+                                                    }
+                                                }
+                                                break;
+                                            }
+                                            if(u_mtemp[rule[cont1]] == "NT")
+                                            {
+                                                for(const auto & j : first[rule[cont1]])
+                                                {
+                                                    if(!(contains(follows[i], j)) && j!= "_e")
+                                                    {
+                                                        follows[i].push_back(j);
+                                                        change = true;
+                                                    }
+                                                }
+                                            
+                                                if(!contains(first[rule[cont1]], "_e")) {break;}
+                                                cont1++;
+                                            }
+                                            else if (u_mtemp[rule[cont1]] == "T")
+                                            {
+                                                if(!(contains(follows[i], rule[cont1])))
+                                                {
+                                                    follows[i].push_back(rule[cont1]);
+                                                    change = true;
+                                                }
+                                                break;
+                                            }
+                                            
+                                        }   
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
 
-        }while(change);    
-        return follows;
+        }while(change);
+
+    return follows;
     }
 };

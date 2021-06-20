@@ -2,7 +2,7 @@
 
 int main()
 {
-    Reader reader("8");
+    Reader reader("2");
 
     // cout<<reader.NT;
     // cout<<reader.T<<endl;
