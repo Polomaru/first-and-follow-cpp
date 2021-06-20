@@ -59,3 +59,22 @@ ostream& operator<<(ostream& output, std::vector<vector<T>> const& valuess)
     output<<"}"<<endl<<endl;
     return output;
 }
+
+template <typename T>
+ostream& operator<<(ostream& output, std::unordered_map<T,vector<T>> const& u_m)
+{
+    output<<"{ "<<endl;
+    for (const auto & v : u_m)
+    {
+        output<<"{ ";
+        output<< v.first <<" : "<< v.second;
+        output<<" }"<<endl;       
+    }
+    output<<"}"<<endl<<endl;
+    return output;
+}
+
+bool contains(vector<string> v, string x)
+{
+    return (std::find(v.begin(), v.end(), x) != v.end()); 
+}
