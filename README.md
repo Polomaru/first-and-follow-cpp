@@ -72,6 +72,12 @@ De momento tenemos 2 funciones que están en la clase `Grammar`.
   unordered_map<string,vector<string>> follow(unordered_map<string,vector<string>> first) 
   // que te devuelve un unordered_map de los no terminales y sus segundos, usando parte de los primeros.
 ```
+
+## Autors
+
+* [Paul Rios](https://github.com/Polomaru)
+* [Juan Pablo Lozada](https://github.com/IWeseI)
+
 # osuna
 Compilar:
 	flex fb.l
