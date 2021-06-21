@@ -3,7 +3,7 @@
 
 int main()
 {
-    Grammar reader("13");
+    Grammar reader("10");
 
     // cout<<reader.NT;
     // cout<<reader.T<<endl;

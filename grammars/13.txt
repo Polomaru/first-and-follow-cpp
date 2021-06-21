@@ -1,2 +1,0 @@
-S -> arriba S abajo S
-S -> _e

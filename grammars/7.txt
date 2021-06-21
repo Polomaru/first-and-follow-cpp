@@ -1,6 +1,3 @@
-S' -> S
-S -> A w S | x S
-A -> B C | y
-B -> z B | z
-C -> _e | y | D
-D -> _e | z D
+S -> a A B b
+A -> c | _e
+B -> d | _e

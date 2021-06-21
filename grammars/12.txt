@@ -1,4 +1,0 @@
-sentencia -> sent-if | otro
-sent-if -> if ( exp ) sentencia parte-else
-parte-else -> else sentencia | _e
-exp -> 0 | 1

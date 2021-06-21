@@ -1,6 +1,4 @@
-S -> a B D h
-B -> c C
-C -> b C | _e
-D -> E F
-E -> g | _e
-F -> f | _e
+sentencia -> sent-if | otro
+sent-if -> if ( exp ) sentencia parte-else
+parte-else -> else sentencia | _e
+exp -> 0 | 1

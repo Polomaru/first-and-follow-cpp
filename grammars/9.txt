@@ -1,3 +1,2 @@
-S -> a A B b
-A -> c | _e
-B -> d | _e
+S -> arriba S abajo S
+S -> _e

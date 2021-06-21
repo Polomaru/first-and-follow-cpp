@@ -1,5 +1,6 @@
-S -> LB S'
-S' -> T ID ; F S' | _e
-F -> RB | _e
-T -> ID T'
-T' -> * T' | _e 
+S -> a B D h
+B -> c C
+C -> b C | _e
+D -> E F
+E -> g | _e
+F -> f | _e
