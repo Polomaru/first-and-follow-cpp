@@ -284,6 +284,15 @@ class Grammar
                         for(const auto & k : follows[i.first])
                         {
                             table_ll[i.first][k] = {"_e"};
+
+                            // if (u_mtemp[h[0]] == "NT")
+                            // {
+                            //     if(table_ll[i.first][k].empty())  table_ll[i.first][k] = h;
+                            // }
+                            // else
+                            // {
+                            //     if(table_ll[i.first][k].empty()) table_ll[i.first][k] = {"_e"};
+                            // }
                         }
                     }
                 }   

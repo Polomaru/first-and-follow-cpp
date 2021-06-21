@@ -2,7 +2,7 @@
 
 int main()
 {
-    Grammar reader("11");
+    Grammar reader("13");
 
     // cout<<reader.NT;
     // cout<<reader.T<<endl;
