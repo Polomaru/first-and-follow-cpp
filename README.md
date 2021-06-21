@@ -49,6 +49,7 @@ Cabe aclarar que la palabra `_e` hace alución a `epsilon` y es una palabra rese
 De momento, ahora solo corriendo. En la carpeta `sin`.
 
 ```sh
+  cd sin
   g++ Gtest.cpp
   ./a.out	
 ```
@@ -81,11 +82,3 @@ De momento tenemos 3 funciones que están en la clase `Grammar`.
 
 * [Paul Rios](https://github.com/Polomaru)
 * [Juan Pablo Lozada](https://github.com/IWeseI)
-
-# osuna
-Compilar:
-	flex fb.l
-	g++ main.cpp lex.yy.cc
-
-Ejecutar:
-	./a.out < test.txt
