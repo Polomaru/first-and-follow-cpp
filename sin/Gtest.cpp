@@ -1,5 +1,6 @@
 #include "reader.h"
 
+
 int main()
 {
     Grammar reader("13");
