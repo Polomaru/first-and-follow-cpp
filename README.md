@@ -62,7 +62,7 @@ Por ejemplo:
 
 ## Funciones
 
-De momento tenemos 2 funciones que están en la clase `Grammar`.
+De momento tenemos 3 funciones que están en la clase `Grammar`.
 
 ```c++
   unordered_map<string,vector<string>> first(); 
@@ -71,6 +71,10 @@ De momento tenemos 2 funciones que están en la clase `Grammar`.
 ```c++
   unordered_map<string,vector<string>> follow(unordered_map<string,vector<string>> first) 
   // que te devuelve un unordered_map de los no terminales y sus segundos, usando parte de los primeros.
+```
+```c++
+  unordered_map<string,unordered_map<string,vector<string>>> table_ll1 ( unordered_map<string,vector<string>> firsts , unordered_map<string,vector<string>> follows)
+  // que te devuelve un unordered_map de los no terminales y un unordered map de los terminales y las sentencias.
 ```
 
 ## Autors
