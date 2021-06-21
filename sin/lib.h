@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <cstdlib>
+#include <iomanip>
 using namespace std;
 
 vector<string> tokenize(string s, string del)
@@ -36,7 +37,7 @@ ostream& operator<<(ostream& output, std::vector<T> const& values)
         else{ output << value << " , "; }
         
     }
-    output<<" }"<<endl;
+    output<<" }";
     return output;
 }
 template <typename T>

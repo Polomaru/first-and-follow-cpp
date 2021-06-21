@@ -2,7 +2,7 @@
 
 int main()
 {
-    Grammar reader("1");
+    Grammar reader("11");
 
     // cout<<reader.NT;
     // cout<<reader.T<<endl;
@@ -15,7 +15,7 @@ int main()
     cout<<endl;
     for(const auto &  i : reader.NT)
     {
-      cout<< i << " : " <<f[i];
+      cout<< setw(8) << i << " : " <<f[i]<<endl;
     }
 
     cout<<endl;
@@ -25,7 +25,26 @@ int main()
 
     for(const auto &  i : reader.NT)
     {
-      cout<< i << " : " <<fo[i];
+      cout<< setw(8)<< i << " : " <<fo[i]<<endl;
     }
+
+    cout<<endl;
+    cout<<"Table LL1: ";
+    cout<<endl;
+
+    auto table = reader.table_ll1(f,fo);
+
+    reader.T.push_back(reader.special);
+    for(const auto &  i : reader.NT)
+    {
+      cout<< i << " : " <<endl;
+      for(const auto &  j : reader.T)
+      {
+        cout<<j<<" = ";
+        cout<<table[i][j]<<" "<<endl;
+      
+      }cout<<endl;
+    }
+    reader.T.pop_back();
     return 0;
 }

@@ -9,6 +9,7 @@ class Grammar
     unordered_map<string,vector<vector<string>>> rules;
     string del1 =" -> ";
     string del2 =" | ";
+    string special = "$";
     Grammar(string file)
     {
         
@@ -155,7 +156,7 @@ class Grammar
         {
             follows[i] = {};
         }
-        follows[NT[0]].push_back("$");
+        follows[NT[0]].push_back(special);
         
         bool change = true;
         do
@@ -250,12 +251,44 @@ class Grammar
     }
 
 
-    unordered_map<string,unordered_map<string,vector<string>>> table_ll1 ( unordered_map<string,vector<string>> first , unordered_map<string,vector<string>> second)
+    unordered_map<string,unordered_map<string,vector<string>>> table_ll1 ( unordered_map<string,vector<string>> firsts , unordered_map<string,vector<string>> follows)
     {
+        unordered_map<string,unordered_map<string,vector<string>>> table_ll;
         unordered_map<string,vector<string>> u_mtemp1;
+        for(const auto & j : T)
+        {
+            u_mtemp1[j] = {};   
+        }
         for(const auto & i : NT)
         {
-            u_mtemp1[i] = {};
+            table_ll[i] = u_mtemp1;
         }
+
+        for(const auto & i : firsts) // recorro los primeros
+        {   
+            // cout<<(rules[i.first]);
+            for(const auto & j : i.second) // recorro el vector de cada primero
+            {
+                for(const auto & h : rules [i.first]) // recorro cada regla para cada elemento de los primeros
+                {
+                    if(j == h[0])
+                    {
+                        table_ll[i.first][j] = h;
+                    }
+                    else if (u_mtemp[h[0]] == "NT")
+                    {
+                        table_ll[i.first][j] = h;
+                    }
+                    if(j == "_e")
+                    {
+                        for(const auto & k : follows[i.first])
+                        {
+                            table_ll[i.first][k] = {"_e"};
+                        }
+                    }
+                }   
+            }   
+        }
+        return table_ll;
     }
 };
